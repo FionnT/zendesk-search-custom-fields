@@ -1,2 +1,2 @@
-# zendesk-search-custom-fields
-Bookmarklet which allows you to search Zendesk by any added custom text fields
+# Bookmarklet which allows you to easily search Zendesk by your custom text fields
+
