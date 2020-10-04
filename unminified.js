@@ -35,6 +35,10 @@ const copyToClipboard = (identifier) => {
 }
 
 enabledFields.forEach((label) => {
+
+  // Prevent duplicating work
+  if(label.dataset.processed) return 
+
   // Insert the links
   let insertParent = label.parentElement
 
@@ -89,6 +93,8 @@ enabledFields.forEach((label) => {
   insertParent.appendChild(inputFieldOnly)
   insertParent.appendChild(inputWithValue)
 
+  
+
   // Hook up the links to copy the inputs field to our clipboard
   searchLinkFieldOnly.addEventListener('click', () =>
     copyToClipboard(inputFieldOnly.id)
@@ -96,4 +102,8 @@ enabledFields.forEach((label) => {
   searchLinkWithValue.addEventListener('click', () =>
     copyToClipboard(inputWithValue.id)
   )
+
+  // Prevent duplicating work
+  label.dataset.processed = true; 
+  
 })
