@@ -59,28 +59,32 @@ enabledFields.forEach((label) => {
 
   let customFieldOnly
   let customFieldWithValue
+  
+  // We need a pseudo GUID to segment the field values when multiple tickets are open in the same tab 
+  let getId = max => Math.floor(Math.random() * Math.floor(max)); 
   let identifier
 
   // Figure out the custom_field_ id, and then create the search terms, and an identifier
   Object.keys(classListObject).forEach((key) => {
     if (classListObject[key].match(/custom_field_/)) {
       identifier = classListObject[key]
-      customFieldOnly = classListObject[key] + ':'
-      customFieldWithValue = classListObject[key] + ':' + input.value
+      customFieldOnly = identifier + ':'
+      customFieldWithValue = identifier + ':' + input.value
     }
   })
 
   // Add inputs to the DOM
   let inputWithValue = document.createElement('input')
   let inputFieldOnly = document.createElement('input')
+  
 
   inputFieldOnly.style.display = 'none'
   inputFieldOnly.value = customFieldOnly
-  inputFieldOnly.id = identifier + '-field'
+  inputFieldOnly.id = getId(9999999) + "-" +  identifier + '-field'
 
   inputWithValue.style.display = 'none'
   inputWithValue.value = customFieldWithValue
-  inputWithValue.id = identifier + '-value'
+  inputWithValue.id = getId(9999999) + "-" + identifier + '-value' 
 
   insertParent.appendChild(inputFieldOnly)
   insertParent.appendChild(inputWithValue)
