@@ -5,17 +5,23 @@ let labels = Array.from(document.getElementsByTagName('label'))
 let enabledFields = labels.filter((label) => {
   let dataset = Object.assign({}, label.dataset)
   let rootParent = label.parentElement.parentElement.parentElement
-  if (
+  let labelParent = label.parentElement
+  let parentDataset = Object.assign({}, labelParent.dataset)
+  if ( 
     dataset.hasOwnProperty('gardenId') &&
-    dataset.gardenId === 'forms.text_label'
-  )
-    if (rootParent.style.display != 'none')
-      if (
-        label.innerText !== 'Followers' &&
-        label.innerText !== 'TRA - Problem Summary*'
-      )
-        return true
-  return false
+    dataset.gardenId === 'forms.input_label' && 
+    rootParent.style.display != 'none' && 
+    parentDataset.hasOwnProperty("testId") && 
+    label.innerText !== 'Followers' &&
+    label.innerText !== 'TRA - Problem Summary*'
+  ) {
+    if (
+      parentDataset.testId.match("ticket-form-field-text-field") || 
+      parentDataset.testId.match("ticket-form-field-numeric-field")
+    ) return true 
+  }
+  return false 
+
 })
 
 // Copy input value to clipboard
