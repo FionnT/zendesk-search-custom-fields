@@ -52,12 +52,14 @@ enabledFields.forEach((label) => {
   searchLinkFieldOnly.innerText = 'Search Field'
   searchLinkFieldOnly.style.float = 'left'
   searchLinkFieldOnly.style.padding = '7px 5px 5px'
-
+  searchLinkFieldOnly.style.fontSize = '12px'
+  
   let searchLinkWithValue = document.createElement('a')
   searchLinkWithValue.innerText = 'Search Value'
   searchLinkWithValue.style.float = 'right'
   searchLinkWithValue.style.padding = '7px 5px 5px'
-
+  searchLinkWithValue.style.fontSize = '12px'
+  
   insertParent.appendChild(searchLinkFieldOnly)
   insertParent.appendChild(searchLinkWithValue)
 
